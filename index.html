@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>vue docs</title>
+</head>
+
+<body>
+
+
+    <input type="text"> <button>Add Task</button>
+
+
+    <div>
+
+    </div>
+
+
+    <script>
+        let btn = document.querySelector("button");
+
+        loadContent();
+
+        function loadContent() {
+            let d = document.querySelector("div");
+            let arr = localStorage.getItem("arr");
+            if (!arr) {
+
+                return;
+            }
+            arr = arr.split(',');
+            for (let i = 0; i < arr.length; i++) {
+                let par = document.createElement("p");
+                let span = document.createElement("span");
+                span.innerText = arr[i];
+                par.appendChild(span);
+                let b = document.createElement("button");
+                b.innerText = "Delete";
+                par.appendChild(b);
+
+                b.addEventListener('click', () => {
+                    let ar = localStorage.getItem("arr").split(',');
+                    ar.splice(i, 1);
+                    localStorage.setItem("arr", ar);
+                    document.querySelector("div").innerHTML = '';
+                    loadContent();
+
+                });
+                d.appendChild(par);
+
+            }
+        }
+
+
+
+        function save() {
+
+            let inp = document.querySelector("input");
+            let lst = localStorage.getItem("arr");
+            if (!inp.value) {
+                return;
+            }
+            if (!lst) {
+                lst = [];
+            } else {
+                lst = lst.split(',');
+            }
+            lst.push(inp.value);
+            console.log(lst);
+            localStorage.setItem("arr", lst);
+        }
+
+        btn.onclick = function() {
+            save();
+            document.querySelector("div").innerHTML = '';
+            loadContent();
+            document.querySelector("input").value = '';
+            document.querySelector("input").focus();
+        }
+    </script>
+</body>
+
+</html>

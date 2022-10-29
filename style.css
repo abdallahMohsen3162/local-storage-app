@@ -1,0 +1,28 @@
+button {
+    padding: 10px;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    background-color: #ff5335;
+    cursor: pointer;
+}
+
+input {
+    padding: 10px;
+    border: none;
+    background-color: #ececec;
+}
+
+div {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+div p {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #ececec;
+}
